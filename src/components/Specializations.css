@@ -1,0 +1,120 @@
+.specializations {
+  padding: var(--section-padding);
+  background-color: var(--bg-primary);
+}
+
+.specializations-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.specializations-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.spec-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: 48px 24px 32px;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.spec-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(204, 255, 0, 0.03), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.spec-card>* {
+  position: relative;
+  z-index: 1;
+}
+
+.spec-card:hover {
+  transform: translateY(-8px);
+  background: var(--bg-card-hover);
+  border-color: rgba(204, 255, 0, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(204, 255, 0, 0.05);
+}
+
+.spec-card:hover::before {
+  opacity: 1;
+}
+
+.spec-icon {
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spec-icon svg {
+  width: 48px;
+  height: 48px;
+  color: var(--accent);
+}
+
+.spec-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.spec-card p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  flex-grow: 1;
+}
+
+.spec-order-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+  padding: 12px 32px;
+  border: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: #333;
+}
+
+.spec-card:hover .spec-order-btn,
+.spec-order-btn:hover {
+  background: var(--accent);
+  color: #111;
+}
+
+@media (max-width: 1024px) {
+  .specializations-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .specializations-grid {
+    grid-template-columns: 1fr;
+  }
+}

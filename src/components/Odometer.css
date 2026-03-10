@@ -1,0 +1,32 @@
+.odometer-container {
+    display: inline-flex;
+    align-items: flex-end;
+    vertical-align: bottom;
+}
+
+.odometer-digit-window {
+    display: inline-block;
+    height: 1em;
+    line-height: 1em;
+    overflow: hidden;
+    vertical-align: bottom;
+}
+
+.odometer-digit-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.odometer-value {
+    height: 1em;
+    line-height: 1em;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.odometer-static {
+    display: inline-block;
+    vertical-align: bottom;
+    line-height: 1em;
+}

@@ -1,0 +1,69 @@
+.cta-banner {
+  padding: 48px 0;
+}
+
+.cta-banner-inner {
+  background-color: var(--accent);
+  border-radius: var(--border-radius-xl);
+  padding: 48px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-banner-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 200 Q100 150 200 200 Q300 250 380 200' fill='none' stroke='%23000' stroke-width='0.5' opacity='0.08'/%3E%3Cpath d='M20 220 Q100 170 200 220 Q300 270 380 220' fill='none' stroke='%23000' stroke-width='0.5' opacity='0.08'/%3E%3Cpath d='M20 180 Q100 130 200 180 Q300 230 380 180' fill='none' stroke='%23000' stroke-width='0.5' opacity='0.08'/%3E%3Ccircle cx='200' cy='200' r='80' fill='none' stroke='%23000' stroke-width='0.5' opacity='0.08'/%3E%3Ccircle cx='200' cy='200' r='120' fill='none' stroke='%23000' stroke-width='0.5' opacity='0.08'/%3E%3C/svg%3E");
+  background-size: 400px 400px;
+  z-index: 0;
+}
+
+.cta-banner-text {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-banner-text h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  color: #000;
+  line-height: 1.2;
+}
+
+.cta-banner-btn {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 36px;
+  background-color: #000;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--border-radius-pill);
+  transition: var(--transition);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.cta-banner-btn:hover {
+  background-color: var(--bg-secondary);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .cta-banner-inner {
+    flex-direction: column;
+    text-align: center;
+    padding: 36px 28px;
+  }
+}

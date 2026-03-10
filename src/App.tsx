@@ -1,66 +1,52 @@
-import { useEffect } from 'react';
-import Lenis from 'lenis';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Navbar from './components/Navbar/Navbar';
-import Hero from './components/Hero/Hero';
-import About from './components/About/About';
-import Experience from './components/Experience/Experience';
-import Projects from './components/Projects/Projects';
-import Skills from './components/Skills/Skills';
-import Education from './components/Education/Education';
-import VoiceAgent from './components/VoiceAgent/VoiceAgent';
-import Chatbot from './components/Chatbot/Chatbot';
-import Contact from './components/Contact/Contact';
-import Footer from './components/Footer/Footer';
-import './App.css';
-
-gsap.registerPlugin(ScrollTrigger);
+import { useEffect } from 'react'
+import Lenis from 'lenis'
+import Navbar from './components/Navbar'
+import Hero from './components/Hero'
+import Specializations from './components/Specializations'
+import Advantages from './components/Advantages'
+import CtaBanner from './components/CtaBanner'
+import Portfolio from './components/Portfolio'
+import Marquee from './components/Marquee'
+import Pricing from './components/Pricing'
+import Blog from './components/Blog'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
 
 function App() {
   useEffect(() => {
-    // Initialize Lenis smooth scroll
     const lenis = new Lenis({
       duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-    });
+    })
 
-    // Connect Lenis to GSAP ScrollTrigger
-    lenis.on('scroll', ScrollTrigger.update);
+    function raf(time: number) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
 
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
+    requestAnimationFrame(raf)
 
-    gsap.ticker.lagSmoothing(0);
-
-    // Cleanup
     return () => {
-      lenis.destroy();
-      gsap.ticker.remove(lenis.raf);
-    };
-  }, []);
+      lenis.destroy()
+    }
+  }, [])
 
   return (
-    <div className="app">
+    <>
       <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Experience />
-        <Projects />
-        <Skills />
-        <Education />
-        <VoiceAgent />
-        <Chatbot />
-        <Contact />
-      </main>
+      <Hero />
+      <Specializations />
+      <Advantages />
+      <CtaBanner />
+      <Portfolio />
+      <Marquee />
+      <Pricing />
+      <Blog />
+      <Contact />
       <Footer />
-    </div>
-  );
+    </>
+  )
 }
 
-export default App;
+export default App
