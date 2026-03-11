@@ -20,7 +20,7 @@ const posts = [
 
 const Blog = () => {
   return (
-    <section className="blog" id="blog">
+    <section className="blog" id="testimonials">
       <div className="container">
         <div className="blog-header">
           <p className="section-label">Blog Post</p>

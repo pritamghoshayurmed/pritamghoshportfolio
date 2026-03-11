@@ -20,24 +20,10 @@ const Navbar = () => {
         </a>
 
         <ul className="nav-links">
-          <li><a href="#" className="active">Home</a></li>
-          <li><a href="#about">About Me</a></li>
-          <li>
-            <span className="dropdown">
-              Pages
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M6 9l6 6 6-6" />
-              </svg>
-            </span>
-          </li>
-          <li>
-            <span className="dropdown">
-              Utility Pages
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M6 9l6 6 6-6" />
-              </svg>
-            </span>
-          </li>
+          <li><a href="#home" className="active">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
 
