@@ -1,5 +1,4 @@
 import { type FormEvent, useState } from 'react'
-import { Resend } from 'resend'
 import './Footer.css'
 
 const Footer = () => {
@@ -24,44 +23,20 @@ const Footer = () => {
     setLoading(true)
 
     try {
-      const resend = new Resend(import.meta.env.VITE_RESEND_API_KEY)
-
-      const emailHtml = `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 20px; border-radius: 8px;">
-          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 8px 8px 0 0; text-align: center;">
-            <h1 style="margin: 0; font-size: 28px;">📬 New Newsletter Subscriber</h1>
-          </div>
-          
-          <div style="background: white; padding: 30px; border-radius: 0 0 8px 8px;">
-            <p style="font-size: 16px; color: #333; margin-bottom: 20px;">Great news! A new subscriber has joined your newsletter.</p>
-            
-            <div style="background-color: #f5f5f5; padding: 20px; border-left: 4px solid #667eea; border-radius: 4px; margin: 20px 0;">
-              <p style="margin: 0; color: #555;">
-                <strong style="color: #667eea;">Subscriber Email:</strong><br/>
-                <span style="font-size: 18px; font-weight: bold; color: #333;">${email}</span>
-              </p>
-            </div>
-
-            <div style="background-color: #f0f7ff; padding: 15px; border-radius: 4px; margin: 20px 0;">
-              <p style="margin: 0; color: #555; font-size: 14px;">
-                <strong>Subscribed at:</strong> ${new Date().toLocaleString()}<br/>
-                <strong>Status:</strong> ✅ Active
-              </p>
-            </div>
-
-            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
-              <p style="color: #999; font-size: 12px; margin: 0;">This is an automated notification from your portfolio website</p>
-            </div>
-          </div>
-        </div>
-      `
-
-      await resend.emails.send({
-        from: 'onboarding@resend.dev',
-        to: 'gpritamneetaspirant@gmail.com',
-        subject: `New Newsletter Subscriber: ${email}`,
-        html: emailHtml,
+      const response = await fetch('/api/subscribe-newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
       })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        setMessage({ type: 'error', text: data.error || 'Failed to subscribe' })
+        return
+      }
 
       setMessage({ type: 'success', text: 'Successfully subscribed! Check your email for updates.' })
       setEmail('')
