@@ -9,23 +9,26 @@
 }
 
 .specializations-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
 }
 
 .spec-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius-lg);
-  padding: 48px 24px 32px;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 40px 24px 30px;
   text-align: center;
   transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  align-items: center;
+  width: 280px;
+  height: 400px;
 }
 
 .spec-card::before {
@@ -84,6 +87,7 @@
   line-height: 1.6;
   margin-bottom: 32px;
   flex-grow: 1;
+  white-space: pre-line;
 }
 
 .spec-order-btn {

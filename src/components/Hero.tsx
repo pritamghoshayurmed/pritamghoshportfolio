@@ -1,7 +1,5 @@
 import './Hero.css'
 import Odometer from './Odometer'
-import Spline from '@splinetool/react-spline'
-
 const Hero = () => {
   return (
     <section className="hero" id="home">
@@ -41,11 +39,12 @@ const Hero = () => {
               </a>
             </div>
 
-            {/* Center: Hero Image / Spline Model */}
+            {/* Center: Hero Image */}
             <div className="hero-image-wrapper animate-fade-up delay-1">
               <div className="hero-image-bg"></div>
-              <div className="hero-spline-container">
-                <Spline scene="https://prod.spline.design/5P5jO-8FgkFGsn68/scene.splinecode" />
+              <div className="hero-image-container">
+                <img src="/background_removed_myimage.png" alt="Pritam Ghosh" className="hero-profile-img" />
+                <div className="hero-image-overlay"></div>
               </div>
             </div>
 

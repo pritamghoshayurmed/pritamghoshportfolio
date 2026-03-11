@@ -25,7 +25,7 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  z-index: 0;
+  z-index: 3;
   pointer-events: none;
 }
 
@@ -36,12 +36,12 @@
   min-height: calc(100vh - 120px);
   position: relative;
   z-index: 2;
-  padding: 40px 60px 0;
+  padding: 40px 60px 190px;
 }
 
 /* Left content */
 .hero-content {
-  padding-bottom: 80px;
+  padding-bottom: 40px;
   z-index: 2;
 }
 
@@ -138,33 +138,59 @@
   z-index: 1;
 }
 
-.hero-spline-container {
-  width: 900px;
-  /* Force larger size */
-  max-width: none;
-  height: 820px;
-  margin-bottom: -280px;
-  /* Push the container down to crop legs */
+.hero-image-container {
+  width: 100%;
+  max-width: 500px;
   position: relative;
   z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  /* Premium glow effect */
+  filter: drop-shadow(0 10px 40px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 60px rgba(204, 255, 0, 0.15));
+}
+
+.hero-profile-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  z-index: 2;
+  position: relative;
   display: block;
-  transform: scale(1.6);
-  transform-origin: center bottom;
-  filter: drop-shadow(0 10px 40px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 60px rgba(204, 255, 0, 0.08));
+  /* Smooth float animation */
+  animation: floatProfile 6s ease-in-out infinite;
+
+  /* Fade out bottom */
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, black 15%);
+  mask-image: linear-gradient(to top, transparent 0%, black 15%);
 }
 
-.hero-spline-container canvas {
-  width: 100% !important;
-  height: 100% !important;
-  outline: none;
+.hero-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Creates a subtle premium gradient overlay on the image container */
+  background: radial-gradient(circle at 50% 30%, transparent 60%, rgba(0, 0, 0, 0.3) 100%);
+  z-index: 3;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  border-radius: 50%;
 }
 
-/* Attempt to hide the Spline watermark */
-.hero-spline-container a,
-.hero-spline-container a[href*="spline.design"] {
-  display: none !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
+@keyframes floatProfile {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .hero-image-bg {
@@ -183,7 +209,7 @@
 
 /* Right stats */
 .hero-stats {
-  padding-bottom: 80px;
+  padding-bottom: 40px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -256,13 +282,9 @@
     order: -1;
   }
 
-  .hero-spline-container {
-    width: 600px;
-    height: 550px;
-    max-width: none;
-    margin-bottom: -180px;
-    transform: scale(1.4);
-    transform-origin: center bottom;
+  .hero-image-container {
+    max-width: 400px;
+    margin: 0 auto;
   }
 
   .hero-stats {
@@ -278,5 +300,58 @@
 
   .hero-stat-bar {
     margin: 12px auto 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 60px;
+    padding-bottom: 20px;
+  }
+
+  .hero-image-container {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: 32px;
+    padding-bottom: 30px;
+  }
+
+  .hero-name {
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+  }
+
+  .hero-title {
+    margin-bottom: 24px;
+  }
+
+  .hero-contact-row {
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .hero-contact-item {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-image-container {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+
+  .hero-image-bg {
+    width: 300px;
+    height: 300px;
+  }
+
+  .hero-inner {
+    padding: 20px 15px 0;
   }
 }
