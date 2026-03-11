@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react'
+import { Resend } from 'resend'
 import './Contact.css'
 
 const Contact = () => {
@@ -7,11 +8,100 @@ const Contact = () => {
     email: '',
     phone: '',
     budget: '',
+    pricingMode: '',
+    projectType: '',
     message: '',
   })
 
-  const handleSubmit = (e: FormEvent) => {
+  const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState({ type: '', text: '' })
+
+  const validateForm = () => {
+    if (!formData.fullName.trim()) return 'Full Name is required'
+    if (!formData.email.trim()) return 'Email is required'
+    if (!formData.email.includes('@')) return 'Valid email is required'
+    if (!formData.phone.trim()) return 'Phone number is required'
+    if (!formData.budget.trim()) return 'Budget estimation is required'
+    if (!formData.projectType) return 'Project Type is required'
+    if (!formData.pricingMode) return 'Pricing Mode is required'
+    if (!formData.message.trim()) return 'Message is required'
+    return null
+  }
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
+    setMessage({ type: '', text: '' })
+
+    const validationError = validateForm()
+    if (validationError) {
+      setMessage({ type: 'error', text: validationError })
+      return
+    }
+
+    setLoading(true)
+
+    try {
+      const resend = new Resend(import.meta.env.VITE_RESEND_API_KEY)
+
+      const emailHtml = `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 20px; border-radius: 8px;">
+          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 8px 8px 0 0; text-align: center;">
+            <h1 style="margin: 0; font-size: 28px;">New Project Inquiry</h1>
+          </div>
+          
+          <div style="background: white; padding: 30px; border-radius: 0 0 8px 8px;">
+            <h2 style="color: #333; margin-top: 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Contact Information</h2>
+            
+            <div style="margin: 20px 0;">
+              <p style="margin: 10px 0;"><strong style="color: #667eea;">Full Name:</strong> ${formData.fullName}</p>
+              <p style="margin: 10px 0;"><strong style="color: #667eea;">Email:</strong> ${formData.email}</p>
+              <p style="margin: 10px 0;"><strong style="color: #667eea;">Phone:</strong> ${formData.phone}</p>
+            </div>
+
+            <h2 style="color: #333; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Project Details</h2>
+            
+            <div style="margin: 20px 0;">
+              <p style="margin: 10px 0;"><strong style="color: #667eea;">Project Type:</strong> ${formData.projectType}</p>
+              <p style="margin: 10px 0;"><strong style="color: #667eea;">Estimated Budget:</strong> ${formData.budget}</p>
+              <p style="margin: 10px 0;"><strong style="color: #667eea;">Pricing Mode:</strong> ${formData.pricingMode}</p>
+            </div>
+
+            <h2 style="color: #333; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Message</h2>
+            
+            <div style="background-color: #f5f5f5; padding: 15px; border-left: 4px solid #667eea; margin: 20px 0; border-radius: 4px;">
+              <p style="margin: 0; color: #555; line-height: 1.6; white-space: pre-wrap;">${formData.message}</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
+              <p style="color: #999; font-size: 12px; margin: 0;">This is an automated message from your portfolio website</p>
+            </div>
+          </div>
+        </div>
+      `
+
+      await resend.emails.send({
+        from: 'onboarding@resend.dev',
+        to: 'gpritamneetaspirant@gmail.com',
+        subject: `New Project Inquiry from ${formData.fullName}`,
+        html: emailHtml,
+      })
+
+      setMessage({ type: 'success', text: 'Email sent successfully! I will get back to you soon.' })
+      setFormData({
+        fullName: '',
+        email: '',
+        phone: '',
+        budget: '',
+        pricingMode: '',
+        projectType: '',
+        message: '',
+      })
+    } catch (error) {
+      console.error('Error sending email:', error)
+      setMessage({ type: 'error', text: 'Failed to send email. Please try again.' })
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -22,9 +112,7 @@ const Contact = () => {
           <p className="section-label">Contact Me</p>
           <h2>Let's Start Your<br />Next Dream Project</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            I specialize in creating innovative digital solutions that transform your ideas into reality. Whether you need a responsive web application, an intelligent AI-powered workflow, or a complete brand identity, I'm here to bring your vision to life with cutting-edge technology and strategic thinking.
           </p>
 
           <div className="contact-methods">
@@ -36,7 +124,7 @@ const Contact = () => {
               </div>
               <div className="contact-method-info">
                 <span>Call Today</span>
-                <strong>+1 456 889 4307</strong>
+                <strong>+91 6295 716 352</strong>
               </div>
             </div>
             <div className="contact-method">
@@ -48,80 +136,114 @@ const Contact = () => {
               </div>
               <div className="contact-method-info">
                 <span>Email Me</span>
-                <strong>@youremail.com</strong>
+                <strong>pghosh75163@gmail.com</strong>
               </div>
             </div>
-          </div>
-
-          <div className="contact-socials">
-            {['twitter', 'linkedin', 'github', 'dribbble'].map((platform) => (
-              <a href="#" className="contact-social-link" key={platform} aria-label={platform}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  {platform === 'twitter' && <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />}
-                  {platform === 'linkedin' && <><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></>}
-                  {platform === 'github' && <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />}
-                  {platform === 'dribbble' && <><circle cx="12" cy="12" r="10" /><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32" /></>}
-                </svg>
-              </a>
-            ))}
           </div>
         </div>
 
         {/* Right - Form */}
         <form className="contact-form" onSubmit={handleSubmit}>
-          <div className="form-row">
-            <div className="form-group">
-              <label>Full Name</label>
-              <input
-                type="text"
-                placeholder="Full Name..."
-                value={formData.fullName}
-                onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-              />
+          {message.text && (
+            <div style={{
+              padding: '12px 16px',
+              borderRadius: '6px',
+              marginBottom: '20px',
+              fontSize: '14px',
+              backgroundColor: message.type === 'success' ? '#d4edda' : '#f8d7da',
+              color: message.type === 'success' ? '#155724' : '#721c24',
+              border: `1px solid ${message.type === 'success' ? '#c3e6cb' : '#f5c6cb'}`
+            }}>
+              {message.text}
             </div>
-            <div className="form-group">
-              <label>Budget</label>
-              <input
-                type="text"
-                placeholder="Budget Estimation..."
-                value={formData.budget}
-                onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-              />
-            </div>
+          )}
+
+          <div className="form-group">
+            <label>Full Name <span style={{ color: 'red' }}>*</span></label>
+            <input
+              type="text"
+              placeholder="Full Name..."
+              value={formData.fullName}
+              onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+              required
+            />
           </div>
 
           <div className="form-row">
             <div className="form-group">
-              <label>Email</label>
+              <label>Email <span style={{ color: 'red' }}>*</span></label>
               <input
                 type="email"
                 placeholder="Your email..."
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                required
               />
             </div>
             <div className="form-group">
-              <label>Phone</label>
+              <label>Phone <span style={{ color: 'red' }}>*</span></label>
               <input
                 type="tel"
-                placeholder="+1 (456) 889 67 55"
+                placeholder="your mobile number..."
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                required
               />
+            </div>
+          </div>
+
+          <div className="form-row">
+            <div className="form-group">
+              <label>Estimated Budget <span style={{ color: 'red' }}>*</span></label>
+              <input
+                type="text"
+                placeholder="Budget Estimation..."
+                value={formData.budget}
+                onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Project Type <span style={{ color: 'red' }}>*</span></label>
+              <select
+                value={formData.projectType}
+                onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
+                required
+              >
+                <option value="">Select Project Type</option>
+                <option value="AI based workflow">AI based workflow</option>
+                <option value="Web dev">Web dev</option>
+                <option value="Voice agent">Voice agent</option>
+                <option value="Branding">Branding</option>
+              </select>
             </div>
           </div>
 
           <div className="form-group">
-            <label>Message</label>
+            <label>Pricing Mode <span style={{ color: 'red' }}>*</span></label>
+            <select
+              value={formData.pricingMode}
+              onChange={(e) => setFormData({ ...formData, pricingMode: e.target.value })}
+              required
+            >
+              <option value="">Select Pricing Mode</option>
+              <option value="Hourly">Hourly</option>
+              <option value="Milestone based">Milestone based</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label>Message <span style={{ color: 'red' }}>*</span></label>
             <textarea
               placeholder="Write your message here..."
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              required
             />
           </div>
 
-          <button type="submit" className="form-submit">
-            Send Message
+          <button type="submit" className="form-submit" disabled={loading}>
+            {loading ? 'Sending...' : 'Send Message'}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="22" y1="2" x2="11" y2="13" />
               <polygon points="22 2 15 22 11 13 2 9 22 2" />

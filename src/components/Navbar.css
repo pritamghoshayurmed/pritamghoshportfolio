@@ -86,6 +86,10 @@
   border-radius: var(--border-radius-pill);
   transition: var(--transition);
   border: none;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 .btn-resume:hover {

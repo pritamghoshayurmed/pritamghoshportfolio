@@ -28,7 +28,14 @@ const Navbar = () => {
         </ul>
 
         <div className="nav-buttons">
-          <button className="btn-resume">My Resume</button>
+          <a
+            href="/resume_pritam.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-resume"
+          >
+            My Resume
+          </a>
           <button className="btn-discuss">Let's Discuss</button>
         </div>
 

@@ -103,6 +103,7 @@
   transition: all 0.3s ease;
   cursor: pointer;
   background: #333;
+  text-decoration: none;
 }
 
 .spec-card:hover .spec-order-btn,

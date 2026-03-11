@@ -5,9 +5,50 @@
 
 .pricing-header {
   text-align: center;
-  margin-bottom: 56px;
+  margin-bottom: 40px;
 }
 
+/* ── Currency Selector ── */
+.currency-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 56px;
+  flex-wrap: wrap;
+}
+
+.currency-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-right: 4px;
+}
+
+.currency-btn {
+  padding: 8px 22px;
+  border-radius: var(--border-radius-pill);
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  letter-spacing: 0.05em;
+}
+
+.currency-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.currency-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #000;
+}
+
+/* ── Grid ── */
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -16,6 +57,12 @@
   margin: 0 auto;
 }
 
+.pricing-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 820px;
+}
+
+/* ── Card ── */
 .pricing-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -25,12 +72,34 @@
   transition: var(--transition);
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .pricing-card:hover {
   transform: translateY(-5px);
   border-color: var(--accent);
   box-shadow: 0 20px 60px rgba(204, 255, 0, 0.06);
+}
+
+.pricing-card-featured {
+  border-color: var(--accent);
+  box-shadow: 0 0 40px rgba(204, 255, 0, 0.08);
+}
+
+.pricing-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: #000;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 16px;
+  border-radius: var(--border-radius-pill);
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .pricing-icon {
@@ -57,6 +126,26 @@
   line-height: 1;
 }
 
+.pricing-range {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pricing-dash {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.pricing-unit {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
 .pricing-label {
   font-size: 1.1rem;
   font-weight: 600;
@@ -64,6 +153,7 @@
   color: var(--text-secondary);
 }
 
+/* ── Buttons ── */
 .pricing-btn {
   display: block;
   width: 100%;
@@ -77,6 +167,8 @@
   transition: var(--transition);
   margin-bottom: 28px;
   cursor: pointer;
+  text-decoration: none;
+  text-align: center;
 }
 
 .pricing-btn:hover {
@@ -84,9 +176,23 @@
   color: #000;
 }
 
+.pricing-btn-filled {
+  background: var(--accent);
+  color: #000;
+}
+
+.pricing-btn-filled:hover {
+  background: transparent;
+  color: var(--accent);
+}
+
+/* ── Features ── */
 .pricing-features {
   text-align: left;
   flex: 1;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .pricing-features li {
@@ -110,9 +216,28 @@
   flex-shrink: 0;
 }
 
-@media (max-width: 1024px) {
+.pricing-note {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 20px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .pricing-grid-2 {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+
   .pricing-grid {
     grid-template-columns: 1fr;
     max-width: 420px;
   }
+
+  .pricing-range {
+    font-size: 1.6rem;
+  }
 }
+

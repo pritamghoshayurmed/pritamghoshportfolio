@@ -1,20 +1,29 @@
 import './Blog.css'
 
-const posts = [
+const StarIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+  </svg>
+)
+
+const testimonials = [
   {
-    date: 'Oct 25, 2024',
-    title: 'Making Your Creations Accessible to All.',
-    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=340&fit=crop',
+    name: 'Soumyasis K',
+    role: 'Tech Startup Founder',
+    service: 'Gen AI & LLM Systems',
+    initials: 'SK',
+    rating: 5,
+    review:
+      'Pritam built an intelligent RAG-based knowledge assistant for our product that blew our expectations. His understanding of LLM architectures, embeddings, and agent workflows is outstanding. The system is fast, accurate, and scales perfectly with our data. Highly professional throughout.',
   },
   {
-    date: 'Feb 14, 2024',
-    title: 'The Importance of User-centric Design.',
-    image: 'https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?w=600&h=340&fit=crop',
-  },
-  {
-    date: 'Feb 7, 2024',
-    title: '5 Free Hot Typographies to Download in 2024',
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=340&fit=crop',
+    name: 'Arpan Chakraborty',
+    role: 'Product Manager',
+    service: 'Web Development & AI Integration',
+    initials: 'AC',
+    rating: 5,
+    review:
+      'We engaged Pritam to rebuild our web platform and integrate a custom AI assistant. The final product was clean, blazing fast, and deeply integrated with our workflows. His ability to bridge modern web development with AI systems is truly rare. Will work with him again.',
   },
 ]
 
@@ -23,26 +32,26 @@ const Blog = () => {
     <section className="blog" id="testimonials">
       <div className="container">
         <div className="blog-header">
-          <p className="section-label">Blog Post</p>
-          <h2 className="section-title">Check Out My Articles</h2>
+          <p className="section-label">Client Reviews</p>
+          <h2 className="section-title">What Clients Say</h2>
         </div>
 
-        <div className="blog-grid">
-          {posts.map((post, index) => (
-            <div className="blog-card" key={index}>
-              <div className="blog-card-image">
-                <img src={post.image} alt={post.title} />
+        <div className="testimonials-grid">
+          {testimonials.map((t, index) => (
+            <div className="testimonial-card" key={index}>
+              <div className="testimonial-stars">
+                {Array.from({ length: t.rating }).map((_, i) => (
+                  <StarIcon key={i} />
+                ))}
               </div>
-              <div className="blog-card-content">
-                <p className="blog-card-date">{post.date}</p>
-                <h3 className="blog-card-title">{post.title}</h3>
-                <a href="#" className="blog-card-link">
-                  Read More
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
-                  </svg>
-                </a>
+              <p className="testimonial-review">"{t.review}"</p>
+              <div className="testimonial-footer">
+                <div className="testimonial-avatar">{t.initials}</div>
+                <div className="testimonial-meta">
+                  <strong className="testimonial-name">{t.name}</strong>
+                  <span className="testimonial-role">{t.role}</span>
+                  <span className="testimonial-service">{t.service}</span>
+                </div>
               </div>
             </div>
           ))}

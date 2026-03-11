@@ -76,9 +76,9 @@ const Specializations = () => {
               <div className="spec-icon">{service.icon}</div>
               <h3>{service.title}</h3>
               <p>{service.description}</p>
-              <button className="spec-order-btn">
+              <a href="#contact" className="spec-order-btn">
                 Order Now
-              </button>
+              </a>
             </div>
           ))}
         </div>
