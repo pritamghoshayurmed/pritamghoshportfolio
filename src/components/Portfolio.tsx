@@ -2,28 +2,32 @@ import './Portfolio.css'
 
 const projects = [
   {
-    year: '2024',
-    title: 'Website UI Design',
-    tags: ['Website Design', 'App', 'Dashboard'],
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop',
+    year: '2025',
+    title: 'Voice Agent Systems',
+    description: 'I build intelligent AI voice agents capable of handling real-time conversations and integrating with business systems.',
+    tags: ['AI Voice', 'Real-time', 'Systems'],
+    image: '/voice_agent_system.png',
   },
   {
     year: '2024',
-    title: 'Corporate Brand Design',
-    tags: ['Website Design', 'App', 'Dashboard'],
-    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=500&fit=crop',
+    title: 'Gen AI & LLM Systems',
+    description: 'I develop LLM-powered apps using RAG and agent-based architectures for intelligent automation.',
+    tags: ['LLMs', 'RAG', 'Agentic AI'],
+    image: '/gen_ai_llm_system.png',
   },
   {
-    year: '2023',
-    title: 'Web Analytics Dashboard',
-    tags: ['Website Design', 'App', 'Dashboard'],
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop',
+    year: '2026',
+    title: 'Web Development',
+    description: 'I build modern, scalable web applications with strong backend architecture and seamless AI integrations.',
+    tags: ['Frontend', 'Backend', 'AI Integration'],
+    image: '/web_development_system.png',
   },
   {
-    year: '2023',
-    title: 'SaaS Dashboard Interaction',
-    tags: ['App', 'Website Design'],
-    image: 'https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=500&fit=crop',
+    year: '2026',
+    title: 'Branding & Identity',
+    description: 'I help build strong digital identities for tech brands through strategic design and brand positioning.',
+    tags: ['Brand Strategy', 'Identity', 'Design'],
+    image: '/branding_identity_system.png',
   },
 ]
 
@@ -36,10 +40,7 @@ const Portfolio = () => {
             <p className="section-label">Portfolio</p>
             <h2 className="section-title">My Featured Projects</h2>
           </div>
-          <div className="portfolio-header-right">
-            <button className="portfolio-filter-btn active">All Projects</button>
-            <button className="portfolio-filter-btn">View All</button>
-          </div>
+          
         </div>
 
         <div className="portfolio-list">
@@ -48,16 +49,20 @@ const Portfolio = () => {
               <div className="portfolio-item-info">
                 <p className="portfolio-item-year">{project.year}</p>
                 <h3 className="portfolio-item-title">{project.title}</h3>
+                <p style={{ color: 'var(--text-secondary)', marginBottom: '16px', fontSize: '0.95rem', lineHeight: '1.6' }}>{project.description}</p>
                 <div className="portfolio-item-tags">
                   {project.tags.map((tag, i) => (
                     <span className="portfolio-item-tag" key={i}>{tag}</span>
                   ))}
                 </div>
-                <div className="portfolio-item-arrow">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <line x1="7" y1="17" x2="17" y2="7" />
-                    <polyline points="7 7 17 7 17 17" />
-                  </svg>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '16px' }}>
+                  <div className="portfolio-item-arrow" style={{ marginTop: 0 }}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ margin: 'auto' }}>
+                      <line x1="7" y1="17" x2="17" y2="7" />
+                      <polyline points="7 7 17 7 17 17" />
+                    </svg>
+                  </div>
+                  <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--accent)' }}>Order Now</span>
                 </div>
               </div>
               <div className="portfolio-item-image">

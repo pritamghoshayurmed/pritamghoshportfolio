@@ -20,22 +20,7 @@ const Footer = () => {
   return (
     <>
       {/* Instagram Section */}
-      <section className="instagram">
-        <div className="container">
-          <div className="instagram-header">
-            <h2 className="instagram-title">
-              <span className="dot">·</span> Follow Instagram <span className="dot">·</span>
-            </h2>
-          </div>
-          <div className="instagram-grid">
-            {instagramImages.map((img, index) => (
-              <div className="instagram-item" key={index}>
-                <img src={img} alt={`Instagram post ${index + 1}`} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       {/* Footer */}
       <footer className="footer">
