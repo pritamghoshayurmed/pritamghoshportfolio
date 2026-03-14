@@ -51,7 +51,7 @@ const Pricing = () => {
               </svg>
             </div>
             <div className="pricing-price">
-              {fmt(3)}<span className="pricing-unit">/hr</span>
+              {fmt(10)}<span className="pricing-unit">/hr</span>
             </div>
             <div className="pricing-label">Hourly Rate</div>
             <a href="#contact" className="pricing-btn">Get Started</a>
