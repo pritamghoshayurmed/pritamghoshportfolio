@@ -25,7 +25,12 @@ const Navbar = () => {
     <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${mobileMenuOpen ? 'menu-open' : ''}`}>
       <div className="container navbar-inner">
         <a href="#" className="logo">
-          <span>P</span>ritam
+          <span className="letter letter-p">P</span>
+          <span className="letter letter-r">r</span>
+          <span className="letter letter-i">i</span>
+          <span className="letter letter-t">t</span>
+          <span className="letter letter-a">a</span>
+          <span className="letter letter-m">m</span>
         </a>
 
         <ul className="nav-links">

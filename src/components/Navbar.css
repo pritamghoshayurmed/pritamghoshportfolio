@@ -22,12 +22,53 @@
 
 .logo {
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.02em;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  color: #CCFF00;
 }
 
-.logo span {
-  color: var(--accent);
+.logo .letter {
+  display: inline-block;
+  color: #CCFF00;
+  text-shadow: 0 0 12px rgba(204, 255, 0, 0.28);
+}
+
+.logo .letter-p {
+  color: #CCFF00;
+  -webkit-text-fill-color: #CCFF00;
+  opacity: 1;
+}
+
+.logo .letter-r {
+  color: #CCFF00;
+  -webkit-text-fill-color: #CCFF00;
+  opacity: 0.9;
+}
+
+.logo .letter-i {
+  color: #CCFF00;
+  -webkit-text-fill-color: #CCFF00;
+  opacity: 0.82;
+}
+
+.logo .letter-t {
+  color: #CCFF00;
+  -webkit-text-fill-color: #CCFF00;
+  opacity: 0.74;
+}
+
+.logo .letter-a {
+  color: #CCFF00;
+  -webkit-text-fill-color: #CCFF00;
+  opacity: 0.66;
+}
+
+.logo .letter-m {
+  color: #CCFF00;
+  -webkit-text-fill-color: #CCFF00;
+  opacity: 0.58;
 }
 
 .nav-links {
