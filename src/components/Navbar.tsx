@@ -64,7 +64,7 @@ const Navbar = () => {
           >
             My Resume
           </a>
-          <button className="btn-discuss">Let's Discuss</button>
+          <a href="#contact" className="btn-discuss">Let's Discuss</a>
         </div>
 
         <button
@@ -108,11 +108,11 @@ const Navbar = () => {
             <span className="mobile-link-label">My Resume</span>
             <span className="mobile-link-arrow" aria-hidden="true">-&gt;</span>
           </a>
-          <button className="mobile-discuss mobile-menu-link mobile-menu-action" type="button">
+          <a href="#contact" className="mobile-discuss mobile-menu-link mobile-menu-action" onClick={closeMobileMenu}>
             <span className="mobile-link-meta">DM</span>
             <span className="mobile-link-label">Let's Discuss</span>
             <span className="mobile-link-arrow" aria-hidden="true">-&gt;</span>
-          </button>
+          </a>
         </div>
       </div>
     </nav>
